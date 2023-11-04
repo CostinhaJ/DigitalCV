@@ -1,0 +1,13 @@
+.profile-picture {
+    
+    border-style: solid; /*cria contorno na borda*/
+    border-color: black;
+
+    max-width: 100%; 
+    height: 10rem; 
+    border-radius: 45%; /*Arredonda pontas do bloco*/
+    
+    left: 1rem;
+    top: 3em;
+    position: relative; /*Permite mover relativamento ao Pai. Ao contratio de static (default)*/
+}

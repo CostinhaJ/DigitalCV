@@ -2,22 +2,36 @@
 <html>
   <head>
     <title>My Blog</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles/lightMode.css">
   </head>
   <body>
-    <header>
-      <h1>My Blog</h1>
-        
-    </header>
-    <nav>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-      </ul>
-    </nav>
+    <header style="height: 16em;">
+    <div style="background-color: black; width: 100%; height: 50%; top: 2em; display: flex;">
+      <div style="width: 25%;">
+        <img class="profile-picture" src="https://avatars.githubusercontent.com/u/124079686?v=4" alt="Foto do João">
+      </div>
+    <div style="width: 75%; display: flex; justify-content: flex-end;">
+        <div class="buttons">
+          <a href="about.html">About</a>
+        </div>
+        <div class="buttons">
+          <a href="home.html">Home</a>
+        </div>
+        <div class="buttons">
+          <a href="contacts.html">Contact</a>
+        </div>
+    </div>
+  </div>
+</header>
     <main>
-      <h2>Welcome to My Blog</h2>
+      <div style="font-size: 2em;">João Pedro Leal Costa</div>
+      <div style="padding-top: 5em;">
+        <h2>Welcome to My Blog</h2>
       <p>This is a sample blog created using HTML, CSS, and JavaScript.</p>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi ducimus praesentium excepturi cumque iste voluptate, totam ipsum sunt animi mollitia, impedit odit illo facilis nihil aliquam autem laboriosam! Deserunt, dolor?
+      </p>
+    </div>
+      
     </main>
     <footer>
       <a href="contacts.html">Contact</a>
