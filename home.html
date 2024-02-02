@@ -1,50 +1,48 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>My Blog</title>
-    <link rel="stylesheet" href="styles/lightMode.css">
-  </head>
-  <body>
-    <header style="height: 16em;">
-    <div style="background-color: black; width: 100%; height: 50%; top: 2em; display: flex;">
-      <div style="width: 25%;">
-        <img class="profile-picture" src="https://avatars.githubusercontent.com/u/124079686?v=4" alt="Foto do João">
-      </div>
-        <nav style="width: 75%; display: flex; justify-content: flex-end;">
-          <ul style="display: flex;">
-          <li>
-            <div class="buttons">
-              <a href="about.html">About</a>
-            </div>
-          </li>
-          <li>
-            <div class="buttons">
-              <a href="home.html">Home</a>
-            </div>
-          </li>
-          <li>
-            <div class="buttons">
-              <a href="contacts.html">Contact</a>
-            </div>
-          </li>
-          </ul>
-        </nav>  
-  </div>
-</header>
-    <main>
-      <div style="font-size: 2em;">João Pedro Leal Costa</div>
-      <div style="padding-top: 5em;">
-        <h2>Welcome to My Blog</h2>
-      <p>This is a sample blog created using HTML, CSS, and JavaScript.</p>
-      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi ducimus praesentium excepturi cumque iste voluptate, totam ipsum sunt animi mollitia, impedit odit illo facilis nihil aliquam autem laboriosam! Deserunt, dolor?
-      </p>
-    </div>
-      
-    </main>
-    <footer>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>João Costa</h1>
+            <span>
+                <a href="#" class="active">Home</a>
+                <a href="#" class="active">About</a>
+                <a href="#" class="active">Contact</a>
+            </span>
+        </nav>
+    </header>
+    <section id="Home">
+        <img src="https://avatars.githubusercontent.com/u/124079686?v=4" id="fotogit" alt="">
+        <h1 id="Label">Full Stack Developer</h1>
+        <!-- Clouds -->
+        <img src="./images/leftCloud.png" id="leftCloud" alt="">
+        <img src="./images/mainCloud.png" id="mainCloud" alt="">
+        <img src="./images/rightCloud.png" id="rightCloud" alt="">
+        <!-- Background -->
+        <img src="./images/background.png" id="BackGround" alt="">
+        <img src="./images/Layer 1.png" id="Mountain1" alt="">
+        <img src="./images/Layer 2.png" id="Mountain2" alt="">
+        <!-- Foto -->
+        
+    </section>
+    <section id="About">
+        <h1>About</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae provident blanditiis dicta tenetur perspiciatis praesentium excepturi harum ipsam esse a at, quis hic sed, vitae totam reprehenderit explicabo aliquam facilis non neque autem sit modi? Nulla quo facere tenetur commodi minima sequi praesentium voluptas assumenda eos vel aliquid laudantium voluptatum rerum nobis quia expedita beatae eius neque, sit quasi accusamus est. Illum architecto, repellat id adipisci accusamus odio mollitia ad dicta odit necessitatibus consequuntur eum dignissimos molestiae, numquam neque ut, commodi quas beatae sequi impedit eaque. Autem, minima vitae, rerum doloremque atque dicta consequuntur veritatis voluptatibus quas eos neque doloribus.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae provident blanditiis dicta tenetur perspiciatis praesentium excepturi harum ipsam esse a at, quis hic sed, vitae totam reprehenderit explicabo aliquam facilis non neque autem sit modi? Nulla quo facere tenetur commodi minima sequi praesentium voluptas assumenda eos vel aliquid laudantium voluptatum rerum nobis quia expedita beatae eius neque, sit quasi accusamus est. Illum architecto, repellat id adipisci accusamus odio mollitia ad dicta odit necessitatibus consequuntur eum dignissimos molestiae, numquam neque ut, commodi quas beatae sequi impedit eaque. Autem, minima vitae, rerum doloremque atque dicta consequuntur veritatis voluptatibus quas eos neque doloribus.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae provident blanditiis dicta tenetur perspiciatis praesentium excepturi harum ipsam esse a at, quis hic sed, vitae totam reprehenderit explicabo aliquam facilis non neque autem sit modi? Nulla quo facere tenetur commodi minima sequi praesentium voluptas assumenda eos vel aliquid laudantium voluptatum rerum nobis quia expedita beatae eius neque, sit quasi accusamus est. Illum architecto, repellat id adipisci accusamus odio mollitia ad dicta odit necessitatibus consequuntur eum dignissimos molestiae, numquam neque ut, commodi quas beatae sequi impedit eaque. Autem, minima vitae, rerum doloremque atque dicta consequuntur veritatis voluptatibus quas eos neque doloribus.</p>
+    </section>
+    <section> 
+      <footer>
       <a href="contacts.html">Contact</a>
       <p>Copyright &copy; 2023 My Blog</p>
-    </footer>
-    <script type="text/javascript" src="script.js"></script>
-  </body>
+      </footer>
+    </section>
+    <script src="main.js"></script>
+</body>
 </html>
