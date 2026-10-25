@@ -1,0 +1,124 @@
+---
+import { profile, about, experience, education, skills } from '../data/cv';
+---
+
+<section id="cv">
+  <div class="container">
+    <h2>CV</h2>
+
+    <div class="grid">
+      <div class="col">
+        <p class="about">{about}</p>
+
+        <h3>Experiência</h3>
+        <ul class="timeline">
+          {
+            experience.map((item) => (
+              <li>
+                <div class="row">
+                  <strong>{item.role}</strong>
+                  <span class="period">{item.period}</span>
+                </div>
+                <div class="where">{item.company}</div>
+                <p>{item.summary}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <aside class="col">
+        <h3>Formação</h3>
+        <ul class="timeline">
+          {
+            education.map((item) => (
+              <li>
+                <div class="row">
+                  <strong>{item.degree}</strong>
+                  <span class="period">{item.period}</span>
+                </div>
+                <div class="where">{item.school}</div>
+              </li>
+            ))
+          }
+        </ul>
+
+        <h3>Competências</h3>
+        <ul class="skills">
+          {skills.map((skill) => <li>{skill}</li>)}
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: 1.6fr 1fr;
+  }
+  @media (max-width: 760px) {
+    .grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+  h3 {
+    font-size: 1.05rem;
+    margin: 0 0 1rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+  }
+  .about {
+    font-size: 1.1rem;
+    margin: 0 0 2.5rem;
+  }
+  .timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2.5rem;
+    display: grid;
+    gap: 1.5rem;
+  }
+  .timeline li {
+    border-left: 2px solid var(--border);
+    padding-left: 1rem;
+  }
+  .row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .period {
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  .where {
+    color: var(--accent);
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+  .timeline p {
+    margin: 0.35rem 0 0;
+    color: var(--muted);
+  }
+  .skills {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .skills li {
+    padding: 0.3rem 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface);
+    font-size: 0.9rem;
+  }
+</style>
