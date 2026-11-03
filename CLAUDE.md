@@ -6,11 +6,12 @@ Personal CV + portfolio, Astro 7 static site, zero client JS. One page (`src/pag
 
 | What | File | Notes |
 | --- | --- | --- |
-| Name, role, tagline, location, email, social links | `src/data/cv.ts` → `profile` | Feeds hero, header brand, `<title>`/meta description, contact section, footer |
+| Name, role, tagline, location, email, social links | `src/data/cv.ts` → `profile` | Feeds hero, header brand, `<title>`/meta description, contact section, footer. `email: ''` hides the email button (first link becomes primary) |
 | About paragraph | `cv.ts` → `about` | Plain string |
-| Experience | `cv.ts` → `experience[]` | `{ role, company, period, summary }`; order in array = order on page |
+| Experience | `cv.ts` → `experience[]` | `{ role, company, period, summary }`; order in array = order on page; empty array hides the section |
 | Education | `cv.ts` → `education[]` | `{ degree, school, period }` (no summary field) |
 | Skills | `cv.ts` → `skills[]` | `string[]`, rendered as pills |
+| Languages | `cv.ts` → `languages[]` | `{ name, level }`; empty array hides the section |
 | Projects | `src/content/projects/*.md` (one file each) | Frontmatter validated by `src/content.config.ts` |
 | Project images | `src/assets/projects/` | 16:10, ideally 1600×1000; Astro emits WebP at 400/700/1000w |
 
@@ -19,11 +20,13 @@ Personal CV + portfolio, Astro 7 static site, zero client JS. One page (`src/pag
 ## Project frontmatter
 
 Required: `title`, `description`, `image` (relative path `../../assets/projects/<file>` — must be in `src/assets`, not `public/`), `link` (must be a valid URL or the build fails), `year` (integer).
-Optional: `imageAlt`, `linkType` (`video` default | `website`), `tags` (string[]), `featured` (bool), `draft` (bool — hides without deleting).
+Optional: `imageAlt`, `linkType` (`video` default → "Ver vídeo" | `website` → "Visitar website" | `repo` → "Ver código"), `tags` (string[]), `featured` (bool), `draft` (bool — hides without deleting).
 Sort: `featured` first, then `year` descending. The markdown body is currently unused.
 To remove a project, delete its `.md` and its image (or set `draft: true` to keep it).
 
 ## Gotchas
+
+- Privacy: the site and repo are public. Never put phone, street address/postal code or the personal email in the repo; the source CV PDF lives outside the repo (VM shared folder) and `private/` is gitignored.
 
 - The site is served under `/DigitalCV/` base path: any new internal asset/page link must be prefixed with `import.meta.env.BASE_URL` (see favicon in `Layout.astro`). `#hash` links are fine.
 - Section anchors `#top`, `#cv`, `#projetos`, `#contacto` are referenced by `Header.astro` nav and hero buttons — rename together.

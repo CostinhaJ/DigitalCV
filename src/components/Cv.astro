@@ -1,5 +1,5 @@
 ---
-import { profile, about, experience, education, skills } from '../data/cv';
+import { about, experience, education, skills, languages } from '../data/cv';
 ---
 
 <section id="cv">
@@ -10,21 +10,25 @@ import { profile, about, experience, education, skills } from '../data/cv';
       <div class="col">
         <p class="about">{about}</p>
 
-        <h3>Experiência</h3>
-        <ul class="timeline">
-          {
-            experience.map((item) => (
-              <li>
-                <div class="row">
-                  <strong>{item.role}</strong>
-                  <span class="period">{item.period}</span>
-                </div>
-                <div class="where">{item.company}</div>
-                <p>{item.summary}</p>
-              </li>
-            ))
-          }
-        </ul>
+        {
+          experience.length > 0 && (
+            <>
+              <h3>Experiência</h3>
+              <ul class="timeline">
+                {experience.map((item) => (
+                  <li>
+                    <div class="row">
+                      <strong>{item.role}</strong>
+                      <span class="period">{item.period}</span>
+                    </div>
+                    <div class="where">{item.company}</div>
+                    <p>{item.summary}</p>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )
+        }
       </div>
 
       <aside class="col">
@@ -47,6 +51,22 @@ import { profile, about, experience, education, skills } from '../data/cv';
         <ul class="skills">
           {skills.map((skill) => <li>{skill}</li>)}
         </ul>
+
+        {
+          languages.length > 0 && (
+            <>
+              <h3>Línguas</h3>
+              <ul class="languages">
+                {languages.map((lang) => (
+                  <li>
+                    <strong>{lang.name}</strong>
+                    <span class="period">{lang.level}</span>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )
+        }
       </aside>
     </div>
   </div>
@@ -109,7 +129,7 @@ import { profile, about, experience, education, skills } from '../data/cv';
   .skills {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 0 0 2.5rem;
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
@@ -120,5 +140,17 @@ import { profile, about, experience, education, skills } from '../data/cv';
     border-radius: 999px;
     background: var(--surface);
     font-size: 0.9rem;
+  }
+  .languages {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+  .languages li {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
   }
 </style>

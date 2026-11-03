@@ -14,8 +14,8 @@ const projects = defineCollection({
       imageAlt: z.string().optional(),
       // Link do vídeo privado ou do website (se ainda estiver online)
       link: z.url(),
-      // "video" -> botão "Ver vídeo" | "website" -> botão "Visitar website"
-      linkType: z.enum(['video', 'website']).default('video'),
+      // "video" -> "Ver vídeo" | "website" -> "Visitar website" | "repo" -> "Ver código"
+      linkType: z.enum(['video', 'website', 'repo']).default('video'),
       tags: z.array(z.string()).default([]),
       // Ano do projeto (usado para ordenar, mais recente primeiro)
       year: z.number().int(),

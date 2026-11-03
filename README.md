@@ -34,7 +34,7 @@ description: Uma ou duas frases sobre o projeto.
 image: ../../assets/projects/meu-projeto.png
 imageAlt: Descrição da imagem (acessibilidade)   # opcional
 link: https://youtu.be/xxxxxxxxxxx                # vídeo privado ou website
-linkType: video                                   # video | website
+linkType: video                                   # video | website | repo
 tags: [React, Node]
 year: 2025
 featured: false      # true = aparece primeiro
@@ -45,14 +45,16 @@ draft: false         # true = esconde o projeto sem o apagar
 Faça commit + push e o site atualiza sozinho. Se faltar um campo ou o link
 for inválido, o build falha com uma mensagem a indicar o ficheiro e o campo.
 
-- `linkType: video` mostra o botão **Ver vídeo**; `linkType: website` mostra **Visitar website**.
+- `linkType: video` mostra o botão **Ver vídeo**; `linkType: website` mostra **Visitar website**;
+  `linkType: repo` mostra **Ver código** (para repositórios GitHub).
 - Quando um website deixar de estar online, mude para `linkType: video` e
   troque o `link` pelo vídeo.
 - A ordem é: `featured` primeiro, depois do ano mais recente para o mais antigo.
 
 ## Editar o CV
 
-Tudo vem de `src/data/cv.ts` (nome, contactos, experiência, formação, competências).
+Tudo vem de `src/data/cv.ts` (nome, contactos, experiência, formação, competências, línguas).
+Listas vazias escondem a secção respetiva; `email: ''` esconde o botão de email.
 
 ## Desenvolver localmente
 

@@ -5,3 +5,6 @@ dist/
 .env.*
 .DS_Store
 npm-debug.log*
+
+# Ficheiros pessoais de trabalho (ex.: CV.pdf original) — nunca publicar
+private/

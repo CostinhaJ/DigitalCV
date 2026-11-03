@@ -8,8 +8,12 @@ interface Props {
 
 const { project } = Astro.props;
 const { title, description, image, imageAlt, link, linkType, tags, year } = project.data;
-const isVideo = linkType === 'video';
-const label = isVideo ? 'Ver vídeo' : 'Visitar website';
+const labels = {
+  video: { button: 'Ver vídeo', badge: '▶ Vídeo' },
+  website: { button: 'Visitar website', badge: '↗ Online' },
+  repo: { button: 'Ver código', badge: '</> Código' },
+} as const;
+const { button: label, badge } = labels[linkType];
 ---
 
 <article class="card">
@@ -21,7 +25,7 @@ const label = isVideo ? 'Ver vídeo' : 'Visitar website';
       sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 340px"
       loading="lazy"
     />
-    <span class="badge">{isVideo ? '▶ Vídeo' : '↗ Online'}</span>
+    <span class="badge">{badge}</span>
   </a>
 
   <div class="body">

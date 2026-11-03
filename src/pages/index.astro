@@ -44,12 +44,12 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft)).so
     <section id="contacto">
       <div class="container contact">
         <h2>Contacto</h2>
-        <p>Quer falar comigo? Escreva-me.</p>
+        <p>{profile.email ? 'Quer falar comigo? Escreva-me.' : 'Quer falar comigo? Encontre-me aqui.'}</p>
         <div class="actions">
-          <a class="btn primary" href={`mailto:${profile.email}`}>{profile.email}</a>
+          {profile.email && <a class="btn primary" href={`mailto:${profile.email}`}>{profile.email}</a>}
           {
-            profile.links.map((link) => (
-              <a class="btn" href={link.href} target="_blank" rel="noopener noreferrer">
+            profile.links.map((link, i) => (
+              <a class:list={['btn', { primary: !profile.email && i === 0 }]} href={link.href} target="_blank" rel="noopener noreferrer">
                 {link.label}
               </a>
             ))
