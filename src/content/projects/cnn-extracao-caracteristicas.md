@@ -5,6 +5,7 @@ image: ../../assets/projects/cnn-extracao-caracteristicas.png
 imageAlt: Fotografia de uma raposa após aplicação de um filtro de deteção de arestas (Sobel)
 link: https://github.com/CostinhaJ/FMAP
 linkType: repo
+category: universidade
 tags: [TensorFlow, Keras]
 year: 2025
 ---

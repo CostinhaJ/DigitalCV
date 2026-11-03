@@ -20,7 +20,7 @@ Personal CV + portfolio, Astro 7 static site, zero client JS. One page (`src/pag
 ## Project frontmatter
 
 Required: `title`, `description`, `image` (relative path `../../assets/projects/<file>` — must be in `src/assets`, not `public/`), `link` (must be a valid URL or the build fails), `year` (integer).
-Optional: `imageAlt`, `linkType` (`video` default → "Ver vídeo" | `website` → "Visitar website" | `repo` → "Ver código"), `tags` (string[]), `featured` (bool), `draft` (bool — hides without deleting).
+Optional: `imageAlt`, `linkType` (`video` default → "Ver vídeo" | `website` → "Visitar website" | `repo` → "Ver código"), `tags` (string[]), `category` (`pessoal` default → "Os Meus Trabalhos" | `universidade` → "Trabalhos da Universidade"; empty groups are hidden), `featured` (bool), `draft` (bool — hides without deleting).
 Sort: `featured` first, then `year` descending. The markdown body is currently unused.
 To remove a project, delete its `.md` and its image (or set `draft: true` to keep it).
 

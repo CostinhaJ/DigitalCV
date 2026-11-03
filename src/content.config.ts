@@ -17,6 +17,8 @@ const projects = defineCollection({
       // "video" -> "Ver vídeo" | "website" -> "Visitar website" | "repo" -> "Ver código"
       linkType: z.enum(['video', 'website', 'repo']).default('video'),
       tags: z.array(z.string()).default([]),
+      // "universidade" -> Trabalhos da Universidade | "pessoal" -> Os Meus Trabalhos
+      category: z.enum(['universidade', 'pessoal']).default('pessoal'),
       // Ano do projeto (usado para ordenar, mais recente primeiro)
       year: z.number().int(),
       // Opcional: projetos em destaque aparecem primeiro

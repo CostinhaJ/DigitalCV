@@ -12,6 +12,14 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft)).so
   (a, b) =>
     Number(b.data.featured) - Number(a.data.featured) || b.data.year - a.data.year,
 );
+
+// Cada grupo só aparece se tiver pelo menos um projeto.
+const groups = [
+  { id: 'meus-trabalhos', title: 'Os Meus Trabalhos', category: 'pessoal' },
+  { id: 'universidade', title: 'Trabalhos da Universidade', category: 'universidade' },
+]
+  .map((g) => ({ ...g, items: projects.filter((p) => p.data.category === g.category) }))
+  .filter((g) => g.items.length > 0);
 ---
 
 <Layout>
@@ -35,9 +43,18 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft)).so
     <section id="projetos">
       <div class="container">
         <h2>Projetos <span class="count">{projects.length}</span></h2>
-        <div class="grid">
-          {projects.map((project) => <ProjectCard project={project} />)}
-        </div>
+        {
+          groups.map((group) => (
+            <div class="group" id={group.id}>
+              <h3>
+                {group.title} <span class="count">{group.items.length}</span>
+              </h3>
+              <div class="grid">
+                {group.items.map((project) => <ProjectCard project={project} />)}
+              </div>
+            </div>
+          ))
+        }
       </div>
     </section>
 
@@ -96,6 +113,17 @@ const projects = (await getCollection('projects', ({ data }) => !data.draft)).so
     border-radius: 999px;
     padding: 0.1em 0.6em;
     margin-left: 0.4rem;
+  }
+  .group + .group {
+    margin-top: 3.5rem;
+  }
+  .group h3 {
+    font-size: 1.05rem;
+    margin: 0 0 1.25rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
   }
   .grid {
     display: grid;

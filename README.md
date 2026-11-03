@@ -36,6 +36,7 @@ imageAlt: Descrição da imagem (acessibilidade)   # opcional
 link: https://youtu.be/xxxxxxxxxxx                # vídeo privado ou website
 linkType: video                                   # video | website | repo
 tags: [React, Node]
+category: pessoal    # pessoal (Os Meus Trabalhos) | universidade
 year: 2025
 featured: false      # true = aparece primeiro
 draft: false         # true = esconde o projeto sem o apagar
@@ -49,7 +50,9 @@ for inválido, o build falha com uma mensagem a indicar o ficheiro e o campo.
   `linkType: repo` mostra **Ver código** (para repositórios GitHub).
 - Quando um website deixar de estar online, mude para `linkType: video` e
   troque o `link` pelo vídeo.
-- A ordem é: `featured` primeiro, depois do ano mais recente para o mais antigo.
+- `category: universidade` coloca o projeto em **Trabalhos da Universidade**;
+  `category: pessoal` (por omissão) em **Os Meus Trabalhos**. Grupos vazios não aparecem.
+- A ordem (dentro de cada grupo) é: `featured` primeiro, depois do ano mais recente para o mais antigo.
 
 ## Editar o CV
 
