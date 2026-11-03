@@ -1,3 +1,36 @@
+# DigitalCV
+
+Personal CV + portfolio, Astro 7 static site, zero client JS. One page (`src/pages/index.astro`), deployed to GitHub Pages by `.github/workflows/deploy.yml` on every push to `main` (served at `https://costinhaj.github.io/DigitalCV/`). Site content and UI copy are in Portuguese (pt-PT); keep new copy in pt-PT.
+
+## Where content lives
+
+| What | File | Notes |
+| --- | --- | --- |
+| Name, role, tagline, location, email, social links | `src/data/cv.ts` → `profile` | Feeds hero, header brand, `<title>`/meta description, contact section, footer |
+| About paragraph | `cv.ts` → `about` | Plain string |
+| Experience | `cv.ts` → `experience[]` | `{ role, company, period, summary }`; order in array = order on page |
+| Education | `cv.ts` → `education[]` | `{ degree, school, period }` (no summary field) |
+| Skills | `cv.ts` → `skills[]` | `string[]`, rendered as pills |
+| Projects | `src/content/projects/*.md` (one file each) | Frontmatter validated by `src/content.config.ts` |
+| Project images | `src/assets/projects/` | 16:10, ideally 1600×1000; Astro emits WebP at 400/700/1000w |
+
+`cv.ts` has no exported types: adding a field (e.g. education summary, experience bullets) also means rendering it in `src/components/Cv.astro`.
+
+## Project frontmatter
+
+Required: `title`, `description`, `image` (relative path `../../assets/projects/<file>` — must be in `src/assets`, not `public/`), `link` (must be a valid URL or the build fails), `year` (integer).
+Optional: `imageAlt`, `linkType` (`video` default | `website`), `tags` (string[]), `featured` (bool), `draft` (bool — hides without deleting).
+Sort: `featured` first, then `year` descending. The markdown body is currently unused.
+To remove a project, delete its `.md` and its image (or set `draft: true` to keep it).
+
+## Gotchas
+
+- The site is served under `/DigitalCV/` base path: any new internal asset/page link must be prefixed with `import.meta.env.BASE_URL` (see favicon in `Layout.astro`). `#hash` links are fine.
+- Section anchors `#top`, `#cv`, `#projetos`, `#contacto` are referenced by `Header.astro` nav and hero buttons — rename together.
+- Hardcoded UI strings live in `index.astro`, `Header.astro`, `ProjectCard.astro` ("Ver vídeo" / "Visitar website"), `Layout.astro` (`lang="pt-PT"`).
+- Theme colors are CSS tokens in `src/styles/global.css` (`:root` + dark-mode override).
+- Verify with `npm run build` (schema errors name the file/field). Node.js is not installed in this dev environment as of 2026-11-03.
+
 <!-- ai-memory:start -->
 ## Long-term memory (ai-memory)
 
