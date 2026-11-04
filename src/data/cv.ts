@@ -33,7 +33,7 @@ export const associativism: Entry[] = [
   {
     role: 'Developer — Departamento de IT',
     company: 'AEISCTE — Associação de Estudantes do Iscte',
-    period: '2024 — presente',
+    period: '2024',
     highlights: [
       'Melhoria do website da AE (em desenvolvimento)',
       'Plataforma de inscrições e pagamentos do evento anual IscteVillage (em desenvolvimento)',
