@@ -7,6 +7,7 @@ Personal CV + portfolio, Astro 7 static site, zero client JS. One page (`src/pag
 | What | File | Notes |
 | --- | --- | --- |
 | Name, role, tagline, location, email, social links | `src/data/cv.ts` → `profile` | Feeds hero, header brand, `<title>`/meta description, contact section, footer. `email: ''` hides the email button (first link becomes primary) |
+| Profile photo | `src/assets/profile.jpg`, imported in `cv.ts` → `profile.photo` | Square image, shown round in the hero; `photo: undefined` hides it |
 | About paragraph | `cv.ts` → `about` | Plain string |
 | Experience | `cv.ts` → `experience[]` | `{ role, company, period, summary }`; order in array = order on page; empty array hides the section |
 | Education | `cv.ts` → `education[]` | `{ degree, school, period }` (no summary field) |

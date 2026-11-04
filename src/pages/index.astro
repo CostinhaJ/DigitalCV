@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Cv from '../components/Cv.astro';
@@ -27,14 +28,29 @@ const groups = [
 
   <main id="top">
     <section class="hero">
-      <div class="container">
-        <p class="eyebrow">{profile.role} · {profile.location}</p>
-        <h1>{profile.name}</h1>
-        <p class="lead">{profile.tagline}</p>
-        <div class="actions">
-          <a class="btn primary" href="#projetos">Ver projetos</a>
-          <a class="btn" href="#cv">Ler CV</a>
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">{profile.role} · {profile.location}</p>
+          <h1>{profile.name}</h1>
+          <p class="lead">{profile.tagline}</p>
+          <div class="actions">
+            <a class="btn primary" href="#projetos">Ver projetos</a>
+            <a class="btn" href="#cv">Ler CV</a>
+          </div>
         </div>
+        {
+          profile.photo && (
+            <Image
+              class="avatar"
+              src={profile.photo}
+              alt={`Fotografia de ${profile.name}`}
+              widths={[160, 240, 320, 480]}
+              sizes="(max-width: 760px) 160px, 240px"
+              loading="eager"
+              fetchpriority="high"
+            />
+          )
+        }
       </div>
     </section>
 
@@ -84,6 +100,31 @@ const groups = [
 <style>
   .hero {
     padding-block: 7rem 4rem;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 3rem;
+  }
+  .avatar {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--surface);
+    box-shadow: 0 0 0 2px var(--accent), var(--shadow);
+  }
+  @media (max-width: 760px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .avatar {
+      order: -1;
+      width: 160px;
+      height: 160px;
+    }
   }
   .eyebrow {
     color: var(--accent);

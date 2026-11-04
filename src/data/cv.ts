@@ -1,12 +1,16 @@
 // Edite este ficheiro com os seus dados. Tudo o que aparece na secção "CV" vem daqui.
 // Não coloque aqui dados sensíveis (telefone, morada): o site é público.
 
+// Foto de perfil (quadrada, em src/assets/). Para esconder, use `photo: undefined`.
+import photo from '../assets/profile.jpg';
+
 export const profile = {
   name: 'João Costa',
   role: 'Engenheiro Informático',
   tagline:
     'Licenciado em Engenharia Informática e mestrando em Inteligência Artificial. Orientado por dados, a crescer como Data Engineer e especialista em IA.',
   location: 'Lisboa, Portugal',
+  photo,
   // Deixe vazio ('') para não mostrar o email no site.
   email: '',
   links: [{ label: 'GitHub', href: 'https://github.com/CostinhaJ' }],
