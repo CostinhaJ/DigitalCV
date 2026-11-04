@@ -34,7 +34,16 @@ export const education = [
   },
 ];
 
-export const skills = ['Python', 'Pandas', 'NumPy', 'Scikit-Learn', 'TensorFlow', 'Keras'];
+export const skills = [
+  // IA e dados
+  'Python', 'Pandas', 'NumPy', 'Scikit-Learn', 'TensorFlow', 'Keras', 'PyTorch', 'Reinforcement Learning',
+  // Desenvolvimento
+  'Java', 'JavaScript', 'PHP', 'Django', 'Flutter',
+  // Dados e infraestrutura
+  'MySQL', 'MongoDB', 'MQTT', 'Docker', 'Kubernetes',
+  // Processo
+  'Git', 'Scrum',
+];
 
 export const languages = [
   { name: 'Português', level: 'Nativo' },
