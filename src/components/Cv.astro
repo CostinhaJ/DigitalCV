@@ -1,5 +1,12 @@
 ---
-import { about, experience, education, skills, languages } from '../data/cv';
+import { about, experience, associativism, volunteering, education, skills, languages } from '../data/cv';
+
+// Secções em formato de cronologia; as vazias não aparecem.
+const timelines = [
+  { title: 'Experiência', items: experience },
+  { title: 'Associativismo', items: associativism },
+  { title: 'Voluntariado', items: volunteering },
+].filter((t) => t.items.length > 0);
 ---
 
 <section id="cv">
@@ -11,23 +18,28 @@ import { about, experience, education, skills, languages } from '../data/cv';
         <p class="about">{about}</p>
 
         {
-          experience.length > 0 && (
+          timelines.map((t) => (
             <>
-              <h3>Experiência</h3>
+              <h3>{t.title}</h3>
               <ul class="timeline">
-                {experience.map((item) => (
+                {t.items.map((item) => (
                   <li>
                     <div class="row">
                       <strong>{item.role}</strong>
                       <span class="period">{item.period}</span>
                     </div>
                     <div class="where">{item.company}</div>
-                    <p>{item.summary}</p>
+                    {item.summary && <p>{item.summary}</p>}
+                    {item.highlights && (
+                      <ul class="highlights">
+                        {item.highlights.map((h) => <li>{h}</li>)}
+                      </ul>
+                    )}
                   </li>
                 ))}
               </ul>
             </>
-          )
+          ))
         }
       </div>
 
@@ -121,6 +133,15 @@ import { about, experience, education, skills, languages } from '../data/cv';
     color: var(--accent);
     font-weight: 500;
     font-size: 0.95rem;
+  }
+  .highlights {
+    margin: 0.4rem 0 0;
+    padding-left: 1.1rem;
+    color: var(--muted);
+  }
+  .timeline .highlights li {
+    border-left: 0;
+    padding-left: 0;
   }
   .timeline p {
     margin: 0.35rem 0 0;

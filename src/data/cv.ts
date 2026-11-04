@@ -22,8 +22,44 @@ export const about =
   'de mestrado em Inteligência Artificial. Sou orientado por dados e procuro crescer como Data Engineer ' +
   'e especialista em IA.';
 
-// Deixe a lista vazia para esconder a secção "Experiência".
-export const experience: { role: string; company: string; period: string; summary: string }[] = [];
+// Entradas de Experiência, Associativismo e Voluntariado.
+// `summary` e `highlights` (lista de pontos) são opcionais.
+type Entry = { role: string; company: string; period: string; summary?: string; highlights?: string[] };
+
+// Listas vazias escondem a secção respetiva.
+export const experience: Entry[] = [];
+
+export const associativism: Entry[] = [
+  {
+    role: 'Developer — Departamento de IT',
+    company: 'AEISCTE — Associação de Estudantes do Iscte',
+    period: '2024 — presente',
+    highlights: [
+      'Melhoria do website da AE (em desenvolvimento)',
+      'Plataforma de inscrições e pagamentos do evento anual IscteVillage (em desenvolvimento)',
+      'Plataforma de gestão de sócios e descontos da AE (em desenvolvimento)',
+    ],
+  },
+  {
+    role: 'Responsável de Equipa — Secção de Desporto',
+    company: 'AEISCTE — Associação de Estudantes do Iscte',
+    period: '2023',
+    highlights: [
+      'Gestor de treinos e jogos das equipas de voleibol feminina e masculina da AEISCTE',
+      'Responsável pelo evento interno de atletas da AEISCTE',
+      'Colaborador na Semana do Desporto do Iscte, no Festival do Caloiro e na Festa de Natal da AEISCTE',
+    ],
+  },
+];
+
+export const volunteering: Entry[] = [
+  {
+    role: 'Membro da equipa de montagem',
+    company: 'Unidade de Saúde de Ilha Terceira',
+    period: '2022',
+    summary: 'Montagem do Centro de Vacinação Covid-19.',
+  },
+];
 
 export const education = [
   {

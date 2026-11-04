@@ -9,14 +9,14 @@ Personal CV + portfolio, Astro 7 static site, zero client JS. One page (`src/pag
 | Name, role, tagline, location, email, social links | `src/data/cv.ts` → `profile` | Feeds hero, header brand, `<title>`/meta description, contact section, footer. `email: ''` hides the email button (first link becomes primary) |
 | Profile photo | `src/assets/profile.jpg`, imported in `cv.ts` → `profile.photo` | Square image, shown round in the hero; `photo: undefined` hides it |
 | About paragraph | `cv.ts` → `about` | Plain string |
-| Experience | `cv.ts` → `experience[]` | `{ role, company, period, summary }`; order in array = order on page; empty array hides the section |
+| Experience / Associativism / Volunteering | `cv.ts` → `experience[]`, `associativism[]`, `volunteering[]` | `Entry = { role, company, period, summary?, highlights?: string[] }`; order in array = order on page; empty array hides the section |
 | Education | `cv.ts` → `education[]` | `{ degree, school, period }` (no summary field) |
 | Skills | `cv.ts` → `skills[]` | `string[]`, rendered as pills |
 | Languages | `cv.ts` → `languages[]` | `{ name, level }`; empty array hides the section |
 | Projects | `src/content/projects/*.md` (one file each) | Frontmatter validated by `src/content.config.ts` |
 | Project images | `src/assets/projects/` | 16:10, ideally 1600×1000; Astro emits WebP at 400/700/1000w |
 
-`cv.ts` has no exported types: adding a field (e.g. education summary, experience bullets) also means rendering it in `src/components/Cv.astro`.
+`cv.ts` only types `Entry`: adding a field (e.g. education summary, experience bullets) also means rendering it in `src/components/Cv.astro`.
 
 ## Project frontmatter
 
