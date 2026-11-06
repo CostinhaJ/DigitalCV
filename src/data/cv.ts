@@ -13,9 +13,14 @@ import photo from '../assets/profile.jpg';
 export const profile = {
   name: 'João Costa',
   role: { pt: 'Engenheiro Informático', en: 'Computer Engineer' } as L,
+  // Graus académicos, mostrados em lista no topo da página.
+  degrees: [
+    { level: 'BSc', name: { pt: 'Engenharia Informática', en: 'Computer Engineering' } },
+    { level: 'MSc', name: { pt: 'Inteligência Artificial', en: 'Artificial Intelligence' } },
+  ] as { level: string; name: L }[],
   tagline: {
-    pt: 'BSc - Engenharia Informática & MSc - Inteligência Artificial. Orientado por dados, a crescer como Data Engineer e especialista em IA.',
-    en: 'BSc in Computer Engineering & MSc in Artificial Intelligence. Data-driven, growing as a Data Engineer and AI specialist.',
+    pt: 'Orientado por dados, a crescer como Data Engineer e especialista em IA.',
+    en: 'Data-driven, growing as a Data Engineer and AI specialist.',
   } as L,
   location: { pt: 'Lisboa, Portugal', en: 'Lisbon, Portugal' } as L,
   photo,

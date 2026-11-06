@@ -48,6 +48,18 @@ const groups = [
         <div>
           <p class="eyebrow">{tr(profile.role, lang)} · {tr(profile.location, lang)}</p>
           <h1>{profile.name}</h1>
+          {
+            profile.degrees.length > 0 && (
+              <ul class="degrees">
+                {profile.degrees.map((d) => (
+                  <li>
+                    <span class="level">{d.level}</span>
+                    {tr(d.name, lang)}
+                  </li>
+                ))}
+              </ul>
+            )
+          }
           <p class="lead">{tr(profile.tagline, lang)}</p>
           <div class="actions">
             <a class="btn primary" href="#projetos">{t.viewProjects}</a>
@@ -156,6 +168,31 @@ const groups = [
   h1 {
     font-size: clamp(2.6rem, 8vw, 5rem);
     letter-spacing: -0.04em;
+  }
+  .degrees {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0;
+    display: grid;
+    gap: 0.6rem;
+    font-size: clamp(1.05rem, 2vw, 1.2rem);
+    font-weight: 500;
+  }
+  .degrees li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .level {
+    min-width: 3.2rem;
+    text-align: center;
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
+    color: var(--accent);
+    font-size: 0.8em;
+    font-weight: 700;
+    letter-spacing: 0.04em;
   }
   .lead {
     max-width: 38rem;

@@ -13,7 +13,13 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const { lang } = Astro.props;
 const {
   title = `${profile.name} — ${tr(profile.role, lang)}`,
-  description = tr(profile.tagline, lang),
+  // Ex.: "BSc Engenharia Informática · MSc Inteligência Artificial. Orientado por dados, ..."
+  description = [
+    profile.degrees.map((d) => `${d.level} ${tr(d.name, lang)}`).join(' · '),
+    tr(profile.tagline, lang),
+  ]
+    .filter(Boolean)
+    .join('. '),
 } = Astro.props;
 // Versões alternativas da página noutros idiomas (para motores de busca).
 const alternates = Astro.site
