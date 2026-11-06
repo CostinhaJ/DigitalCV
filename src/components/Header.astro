@@ -1,15 +1,37 @@
 ---
 import { profile } from '../data/cv';
+import { homePath, htmlLang, langs, ui, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = ui[lang];
 ---
 
 <header class="site-header">
   <div class="container bar">
     <a class="brand" href="#top">{profile.name}</a>
-    <nav aria-label="Principal">
-      <a href="#cv">CV</a>
-      <a href="#projetos">Projetos</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
+    <div class="right">
+      <nav aria-label={t.navLabel}>
+        <a href="#cv">{t.nav.cv}</a>
+        <a href="#projetos">{t.nav.projects}</a>
+        <a href="#contacto">{t.nav.contact}</a>
+      </nav>
+      <div class="lang-switch" role="group" aria-label={t.langLabel}>
+        {
+          langs.map((l) =>
+            l === lang ? (
+              <span aria-current="true">{l.toUpperCase()}</span>
+            ) : (
+              <a href={homePath(l)} hreflang={htmlLang[l]} lang={htmlLang[l]}>
+                {l.toUpperCase()}
+              </a>
+            ),
+          )
+        }
+      </div>
+    </div>
   </div>
 </header>
 
@@ -32,6 +54,43 @@ import { profile } from '../data/cv';
     font-weight: 700;
     text-decoration: none;
     letter-spacing: -0.01em;
+  }
+  .right {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  .lang-switch {
+    display: flex;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 2px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  .lang-switch > * {
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    text-decoration: none;
+    line-height: 1.4;
+  }
+  .lang-switch [aria-current] {
+    background: var(--accent);
+    color: var(--accent-contrast);
+  }
+  .lang-switch a {
+    color: var(--muted);
+  }
+  .lang-switch a:hover {
+    color: var(--text);
+  }
+  @media (max-width: 480px) {
+    .right {
+      gap: 0.75rem;
+    }
+    nav {
+      gap: 0.75rem !important;
+    }
   }
   nav {
     display: flex;

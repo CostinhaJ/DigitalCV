@@ -1,17 +1,24 @@
 # DigitalCV
 
-Personal CV + portfolio, Astro 7 static site, zero client JS. One page (`src/pages/index.astro`), deployed to GitHub Pages by `.github/workflows/deploy.yml` on every push to `main` (served at `https://costinhaj.github.io/DigitalCV/`). Site content and UI copy are in Portuguese (pt-PT); keep new copy in pt-PT.
+Personal CV + portfolio, Astro 7 static site, zero client JS. Bilingual: Portuguese at `/` (`src/pages/index.astro`) and English at `/en/` (`src/pages/en/index.astro`); both render `src/components/Home.astro` with a `lang` prop. Site deployed to GitHub Pages by `.github/workflows/deploy.yml` on every push to `main` (served at `https://costinhaj.github.io/DigitalCV/`). Site content is pt-PT first; every new piece of copy needs an English version too.
+
+## Languages (i18n)
+
+- `src/i18n.ts`: `Lang` (`pt` | `en`), `L` = `string | { pt, en }`, `tr(value, lang)`, `homePath(lang)` (base-path aware) and `ui` — all fixed UI strings (nav, buttons, section titles, link labels) for both languages. New UI text goes in `ui`, never hardcoded in components.
+- `cv.ts`: any text field is `L` — a plain string is shared by both languages, `{ pt, en }` translates it. URLs inside `highlights` are auto-linked.
+- Projects: optional `en:` frontmatter block (`title`, `description`, `imageAlt`, `tags`); missing fields fall back to Portuguese.
+- Header shows a PT | EN switch: plain links between `/` and `/en/` (no JS). `Layout.astro` sets `<html lang>`, `hreflang` alternates and `og:locale`.
 
 ## Where content lives
 
 | What | File | Notes |
 | --- | --- | --- |
-| Name, role, tagline, location, email, social links | `src/data/cv.ts` → `profile` | Feeds hero, header brand, `<title>`/meta description, contact section, footer. `email: ''` hides the email button (first link becomes primary) |
+| Name, role, tagline, location, email, social links (text fields are `L`) | `src/data/cv.ts` → `profile` | Feeds hero, header brand, `<title>`/meta description, contact section, footer. `email: ''` hides the email button (first link becomes primary) |
 | Profile photo | `src/assets/profile.jpg`, imported in `cv.ts` → `profile.photo` | Square image, shown round in the hero; `photo: undefined` hides it |
-| About paragraph | `cv.ts` → `about` | Plain string |
-| Experience / Associativism / Volunteering | `cv.ts` → `experience[]`, `associativism[]`, `volunteering[]` | `Entry = { role, company, period, summary?, highlights?: string[] }`; order in array = order on page; empty array hides the section |
+| About paragraph | `cv.ts` → `about` | `L` (`{ pt, en }`) |
+| Experience / Associativism / Volunteering | `cv.ts` → `experience[]`, `associativism[]`, `volunteering[]` | `Entry = { role, company, period, summary?, highlights?: L[] }` (all fields `L`); order in array = order on page; empty array hides the section |
 | Education | `cv.ts` → `education[]` | `{ degree, school, period }` (no summary field) |
-| Skills | `cv.ts` → `skills[]` | `string[]`, rendered as pills |
+| Skills | `cv.ts` → `skills[]` | `L[]`, rendered as pills |
 | Languages | `cv.ts` → `languages[]` | `{ name, level }`; empty array hides the section |
 | Projects | `src/content/projects/*.md` (one file each) | Frontmatter validated by `src/content.config.ts` |
 | Project images | `src/assets/projects/` | 16:10, ideally 1600×1000; Astro emits WebP at 400/700/1000w |
@@ -21,7 +28,7 @@ Personal CV + portfolio, Astro 7 static site, zero client JS. One page (`src/pag
 ## Project frontmatter
 
 Required: `title`, `description`, `image` (relative path `../../assets/projects/<file>` — must be in `src/assets`, not `public/`), `link` (must be a valid URL or the build fails), `year` (integer).
-Optional: `imageAlt`, `linkType` (`video` default → "Ver vídeo" | `website` → "Visitar website" | `repo` → "Ver código"), `tags` (string[]), `category` (`pessoal` default → "Os Meus Trabalhos" | `universidade` → "Trabalhos da Universidade"; empty groups are hidden), `featured` (bool), `draft` (bool — hides without deleting).
+Optional: `en` (English overrides, see above), `imageAlt`, `linkType` (`video` default → "Ver vídeo" | `website` → "Visitar website" | `repo` → "Ver código"), `tags` (string[]), `category` (`pessoal` default → "Os Meus Trabalhos" | `universidade` → "Trabalhos da Universidade"; empty groups are hidden), `featured` (bool), `draft` (bool — hides without deleting).
 Sort: `featured` first, then `year` descending. The markdown body is currently unused.
 To remove a project, delete its `.md` and its image (or set `draft: true` to keep it).
 
@@ -31,7 +38,7 @@ To remove a project, delete its `.md` and its image (or set `draft: true` to kee
 
 - The site is served under `/DigitalCV/` base path: any new internal asset/page link must be prefixed with `import.meta.env.BASE_URL` (see favicon in `Layout.astro`). `#hash` links are fine.
 - Section anchors `#top`, `#cv`, `#projetos`, `#contacto` are referenced by `Header.astro` nav and hero buttons — rename together.
-- Hardcoded UI strings live in `index.astro`, `Header.astro`, `ProjectCard.astro` ("Ver vídeo" / "Visitar website"), `Layout.astro` (`lang="pt-PT"`).
+- UI strings live in `ui` in `src/i18n.ts` (not in components).
 - Theme colors are CSS tokens in `src/styles/global.css` (`:root` + dark-mode override).
 - Verify with `npm run build` (schema errors name the file/field). Node.js is not installed in this dev environment as of 2026-11-03.
 

@@ -1,26 +1,30 @@
 ---
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
+import { ui, type Lang } from '../i18n';
 
 interface Props {
   project: CollectionEntry<'projects'>;
+  lang: Lang;
 }
 
-const { project } = Astro.props;
-const { title, description, image, imageAlt, link, linkType, tags, year } = project.data;
-const labels = {
-  video: { button: 'Ver vídeo', badge: '▶ Vídeo' },
-  website: { button: 'Visitar website', badge: '↗ Online' },
-  repo: { button: 'Ver código', badge: '</> Código' },
-} as const;
-const { button: label, badge } = labels[linkType];
+const { project, lang } = Astro.props;
+const { image, link, linkType, year } = project.data;
+// Em inglês usa o bloco `en:` do projeto; o que faltar fica em português.
+const en = lang === 'en' ? project.data.en : undefined;
+const title = en?.title ?? project.data.title;
+const description = en?.description ?? project.data.description;
+const imageAlt = en?.imageAlt ?? project.data.imageAlt;
+const tags = en?.tags ?? project.data.tags;
+const t = ui[lang];
+const { button: label, badge } = t.links[linkType];
 ---
 
 <article class="card">
   <a class="media" href={link} target="_blank" rel="noopener noreferrer" aria-label={`${label}: ${title}`}>
     <Image
       src={image}
-      alt={imageAlt ?? `Captura do projeto ${title}`}
+      alt={imageAlt ?? `${t.screenshotAlt} ${title}`}
       widths={[400, 700, 1000]}
       sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 340px"
       loading="lazy"

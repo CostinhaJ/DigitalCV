@@ -8,4 +8,8 @@ linkType: website
 category: pessoal
 tags: [HTML, CSS, JavaScript]
 year: 2024
+en:
+  title: "Graduation Ceremony website"
+  description: "An informational front-end website for the Iscte Graduation Ceremony, organised by AEISCTE-IUL: event information, a gallery of past editions with a lightbox, an accordion FAQ and scroll animations."
+  imageAlt: "The Graduation Ceremony '24 logo over a photo of graduates raising their capes"
 ---

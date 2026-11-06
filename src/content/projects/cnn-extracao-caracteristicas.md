@@ -8,4 +8,8 @@ linkType: repo
 category: universidade
 tags: [TensorFlow, Keras]
 year: 2025
+en:
+  title: "CNN for feature extraction"
+  description: "Coursework for the Mathematics for Deep Learning module — convolutions, edge-detection filters and convolutional neural networks in Keras for feature extraction."
+  imageAlt: "Photo of a fox after applying an edge-detection (Sobel) filter"
 ---

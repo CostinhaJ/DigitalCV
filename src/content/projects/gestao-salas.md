@@ -8,4 +8,8 @@ linkType: repo
 category: universidade
 tags: [JavaScript, Jest, Scrum]
 year: 2024
+en:
+  title: "Iscte timetable and room management"
+  description: "Software Engineering (BSc, team of 6 using Scrum): a web app to load timetables and rooms from CSV, browse timetables and suggest room allocations."
+  imageAlt: "Illustration of a timetable grid with booked rooms"
 ---

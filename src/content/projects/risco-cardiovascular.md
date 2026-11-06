@@ -8,4 +8,8 @@ linkType: repo
 category: universidade
 tags: [Scikit-Learn, Pandas, CRISP-DM]
 year: 2025
+en:
+  title: "Cardiovascular risk prediction"
+  description: "Final project for Introduction to Machine Learning (MSc): the CRISP-DM methodology applied to predicting heart disease with supervised models, segmentation with unsupervised methods and a study of the effect of missing data."
+  imageAlt: "ROC curve of the MLP model"
 ---

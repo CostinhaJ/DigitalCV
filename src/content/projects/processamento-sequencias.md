@@ -8,4 +8,8 @@ linkType: repo
 category: universidade
 tags: [PyTorch, Transformers, NLP]
 year: 2025
+en:
+  title: "Deep learning for sequence processing"
+  description: "Final project for Advanced Machine Learning (MSc): LSTMs, DistilBERT and an LLM compared on POS tagging, plus Transformer (minGPT) and recurrent models trained to add numbers character by character."
+  imageAlt: "Confusion matrix of the BERT POS tagger"
 ---

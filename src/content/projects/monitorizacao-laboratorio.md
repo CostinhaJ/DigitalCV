@@ -8,4 +8,8 @@ linkType: repo
 category: universidade
 tags: [MQTT, MongoDB, MySQL, Flutter, PHP]
 year: 2024
+en:
+  title: "Laboratory experiment monitoring"
+  description: "Distributed Information Systems integrated project (BSc): sensor data collected via MQTT, stored in MongoDB and MySQL, with alerts in a Flutter app and a PHP web app, to study how mice react to olfactory stimuli."
+  imageAlt: "Illustration of sensors connected to a broker and databases"
 ---

@@ -8,4 +8,8 @@ linkType: repo
 category: pessoal
 tags: [HTML, CSS, JavaScript]
 year: 2024
+en:
+  title: "Undeniable question"
+  description: "An interactive page where the \"No\" button runs away from the cursor, making the question impossible to refuse."
+  imageAlt: "Illustration of a green button and a red button running away from the cursor"
 ---

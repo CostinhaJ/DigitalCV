@@ -8,4 +8,8 @@ linkType: repo
 category: pessoal
 tags: [MPS, Kubernetes, IoT]
 year: 2026
+en:
+  title: "DSL for self-adaptive IoT systems"
+  description: "Experiments with a JetBrains MPS DSL for modelling multi-layer IoT systems (devices, edge, fog and cloud) with adaptation rules, and generating the Kubernetes manifests."
+  imageAlt: "Illustration of the stacked layers of an IoT system"
 ---

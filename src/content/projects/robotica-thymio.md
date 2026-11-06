@@ -8,4 +8,8 @@ linkType: repo
 category: universidade
 tags: [Webots, Stable-Baselines3, Reinforcement Learning]
 year: 2025
+en:
+  title: "AI for Thymio robots"
+  description: "AI for Robotics (MSc): controllers trained in simulation (Webots) and tested on a real robot — evolutionary algorithms to follow a line and reinforcement learning (PPO and RecurrentPPO) to explore without colliding or falling."
+  imageAlt: "Dashboard of training metrics comparing RPPO and PPO"
 ---

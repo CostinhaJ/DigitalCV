@@ -1,0 +1,191 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import Header from './Header.astro';
+import Cv from './Cv.astro';
+import ProjectCard from './ProjectCard.astro';
+import { profile } from '../data/cv';
+import { tr, ui, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = ui[lang];
+
+// Projetos em destaque primeiro, depois do mais recente para o mais antigo.
+// Os marcados com draft: true não aparecem.
+const projects = (await getCollection('projects', ({ data }) => !data.draft)).sort(
+  (a, b) =>
+    Number(b.data.featured) - Number(a.data.featured) || b.data.year - a.data.year,
+);
+
+// Cada grupo só aparece se tiver pelo menos um projeto.
+const groups = [
+  { id: 'meus-trabalhos', title: t.groups.pessoal, category: 'pessoal' },
+  { id: 'universidade', title: t.groups.universidade, category: 'universidade' },
+]
+  .map((g) => ({ ...g, items: projects.filter((p) => p.data.category === g.category) }))
+  .filter((g) => g.items.length > 0);
+---
+
+<Layout lang={lang}>
+  <Header lang={lang} />
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">{tr(profile.role, lang)} · {tr(profile.location, lang)}</p>
+          <h1>{profile.name}</h1>
+          <p class="lead">{tr(profile.tagline, lang)}</p>
+          <div class="actions">
+            <a class="btn primary" href="#projetos">{t.viewProjects}</a>
+            <a class="btn" href="#cv">{t.readCv}</a>
+          </div>
+        </div>
+        {
+          profile.photo && (
+            <Image
+              class="avatar"
+              src={profile.photo}
+              alt={`${t.photoAlt} ${profile.name}`}
+              widths={[160, 240, 320, 480]}
+              sizes="(max-width: 760px) 160px, 240px"
+              loading="eager"
+              fetchpriority="high"
+            />
+          )
+        }
+      </div>
+    </section>
+
+    <Cv lang={lang} />
+
+    <section id="projetos">
+      <div class="container">
+        <h2>{t.projects} <span class="count">{projects.length}</span></h2>
+        {
+          groups.map((group) => (
+            <div class="group" id={group.id}>
+              <h3>
+                {group.title} <span class="count">{group.items.length}</span>
+              </h3>
+              <div class="grid">
+                {group.items.map((project) => <ProjectCard project={project} lang={lang} />)}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="container contact">
+        <h2>{t.contact}</h2>
+        <p>{profile.email ? t.contactEmail : t.contactLinks}</p>
+        <div class="actions">
+          {profile.email && <a class="btn primary" href={`mailto:${profile.email}`}>{profile.email}</a>}
+          {
+            profile.links.map((link, i) => (
+              <a class:list={['btn', { primary: !profile.email && i === 0 }]} href={link.href} target="_blank" rel="noopener noreferrer">
+                {link.label}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© {new Date().getFullYear()} {profile.name}</div>
+  </footer>
+</Layout>
+
+<style>
+  .hero {
+    padding-block: 7rem 4rem;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 3rem;
+  }
+  .avatar {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--surface);
+    box-shadow: 0 0 0 2px var(--accent), var(--shadow);
+  }
+  @media (max-width: 760px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .avatar {
+      order: -1;
+      width: 160px;
+      height: 160px;
+    }
+  }
+  .eyebrow {
+    color: var(--accent);
+    font-weight: 600;
+    margin: 0 0 1rem;
+  }
+  h1 {
+    font-size: clamp(2.6rem, 8vw, 5rem);
+    letter-spacing: -0.04em;
+  }
+  .lead {
+    max-width: 38rem;
+    font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+    color: var(--muted);
+    margin: 1.25rem 0 2rem;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .count {
+    font-size: 0.5em;
+    vertical-align: middle;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.1em 0.6em;
+    margin-left: 0.4rem;
+  }
+  .group + .group {
+    margin-top: 3.5rem;
+  }
+  .group h3 {
+    font-size: 1.05rem;
+    margin: 0 0 1.25rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+  }
+  .grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 310px), 1fr));
+  }
+  .contact p {
+    margin: 0 0 1.5rem;
+    color: var(--muted);
+  }
+  footer {
+    padding-block: 2.5rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+</style>
