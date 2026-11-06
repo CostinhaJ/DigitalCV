@@ -8,7 +8,7 @@ export const profile = {
   name: 'João Costa',
   role: 'Engenheiro Informático',
   tagline:
-    'Licenciado em Engenharia Informática e mestrando em Inteligência Artificial. Orientado por dados, a crescer como Data Engineer e especialista em IA.',
+    'BSc - Engenharia Informática & MSc -Inteligência Artificial. Orientado por dados, a crescer como Data Engineer e especialista em IA.',
   location: 'Lisboa, Portugal',
   photo,
   // Deixe vazio ('') para não mostrar o email no site.
@@ -35,9 +35,9 @@ export const associativism: Entry[] = [
     company: 'AEISCTE — Associação de Estudantes do Iscte',
     period: '2024',
     highlights: [
-      'Melhoria do website da AE (em desenvolvimento)',
-      'Plataforma de inscrições e pagamentos do evento anual IscteVillage (em desenvolvimento)',
-      'Plataforma de gestão de sócios e descontos da AE (em desenvolvimento)',
+      'Melhoria do website da AE https://aeiscte-iul.pt/',
+      'Front-end Informativo do evento anual Cerimónia de Finalistas https://cerimoniafinalistas.web.app/',
+      'Plataforma de gestão de sócios e descontos da AE https://aeiscte-socios.web.app/',
     ],
   },
   {
