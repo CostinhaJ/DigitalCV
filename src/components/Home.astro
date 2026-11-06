@@ -5,6 +5,7 @@ import Layout from '../layouts/Layout.astro';
 import Header from './Header.astro';
 import Cv from './Cv.astro';
 import ProjectCard from './ProjectCard.astro';
+import Icon, { type IconName } from './Icon.astro';
 import { profile } from '../data/cv';
 import { tr, ui, type Lang } from '../i18n';
 
@@ -13,6 +14,14 @@ interface Props {
 }
 const { lang } = Astro.props;
 const t = ui[lang];
+
+// Ícones de contacto: email (se existir) e depois os links com endereço.
+const contacts: { label: string; icon: IconName; href: string; external: boolean }[] = [
+  ...(profile.email
+    ? [{ label: `Email: ${profile.email}`, icon: 'mail' as const, href: `mailto:${profile.email}`, external: false }]
+    : []),
+  ...profile.links.filter((l) => l.href).map((l) => ({ ...l, external: true })),
+];
 
 // Projetos em destaque primeiro, depois do mais recente para o mais antigo.
 // Os marcados com draft: true não aparecem.
@@ -85,16 +94,22 @@ const groups = [
       <div class="container contact">
         <h2>{t.contact}</h2>
         <p>{profile.email ? t.contactEmail : t.contactLinks}</p>
-        <div class="actions">
-          {profile.email && <a class="btn primary" href={`mailto:${profile.email}`}>{profile.email}</a>}
+        <ul class="socials">
           {
-            profile.links.map((link, i) => (
-              <a class:list={['btn', { primary: !profile.email && i === 0 }]} href={link.href} target="_blank" rel="noopener noreferrer">
-                {link.label}
-              </a>
+            contacts.map((c) => (
+              <li>
+                <a
+                  href={c.href}
+                  aria-label={c.label}
+                  title={c.label}
+                  {...(c.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                >
+                  <Icon name={c.icon} size={22} />
+                </a>
+              </li>
             ))
           }
-        </div>
+        </ul>
       </div>
     </section>
   </main>
@@ -181,6 +196,38 @@ const groups = [
   .contact p {
     margin: 0 0 1.5rem;
     color: var(--muted);
+  }
+  .socials {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .socials a {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    transition: transform 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  }
+  .socials a:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .socials a {
+      transition: none;
+    }
+    .socials a:hover {
+      transform: none;
+    }
   }
   footer {
     padding-block: 2.5rem;

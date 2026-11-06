@@ -13,7 +13,7 @@ Personal CV + portfolio, Astro 7 static site, zero client JS. Bilingual: Portugu
 
 | What | File | Notes |
 | --- | --- | --- |
-| Name, role, tagline, location, email, social links (text fields are `L`) | `src/data/cv.ts` → `profile` | Feeds hero, header brand, `<title>`/meta description, contact section, footer. `email: ''` hides the email button (first link becomes primary) |
+| Name, role, tagline, location, email, social links (text fields are `L`) | `src/data/cv.ts` → `profile` | Feeds hero, header brand, `<title>`/meta description, contact section, footer. Contact section renders icons (`src/components/Icon.astro`, Lucide SVGs inline): mail (if `email` set) + `links[]` `{ label, icon: github|instagram|linkedin, href }`; empty `href` or `email: ''` hides that icon |
 | Profile photo | `src/assets/profile.jpg`, imported in `cv.ts` → `profile.photo` | Square image, shown round in the hero; `photo: undefined` hides it |
 | About paragraph | `cv.ts` → `about` | `L` (`{ pt, en }`) |
 | Experience / Associativism / Volunteering | `cv.ts` → `experience[]`, `associativism[]`, `volunteering[]` | `Entry = { role, company, period, summary?, highlights?: L[] }` (all fields `L`); order in array = order on page; empty array hides the section |

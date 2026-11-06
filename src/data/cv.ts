@@ -5,6 +5,7 @@
 // ou um objeto { pt: '...', en: '...' } com a versão de cada idioma.
 // URLs dentro dos `highlights` ficam automaticamente clicáveis.
 import type { L } from '../i18n';
+import type { IconName } from '../components/Icon.astro';
 
 // Foto de perfil (quadrada, em src/assets/). Para esconder, use `photo: undefined`.
 import photo from '../assets/profile.jpg';
@@ -18,9 +19,15 @@ export const profile = {
   } as L,
   location: { pt: 'Lisboa, Portugal', en: 'Lisbon, Portugal' } as L,
   photo,
-  // Deixe vazio ('') para não mostrar o email no site.
+  // Deixe vazio ('') para não mostrar o ícone de email no site.
   email: '',
-  links: [{ label: 'GitHub', href: 'https://github.com/CostinhaJ' }],
+  // Ícones da secção Contacto, por esta ordem. `icon`: github | instagram | linkedin.
+  // Links com `href` vazio ('') não aparecem.
+  links: [
+    { label: 'GitHub', icon: 'github', href: 'https://github.com/CostinhaJ' },
+    { label: 'LinkedIn', icon: 'linkedin', href: 'https://www.linkedin.com/in/jo%C3%A3o-costa-a296b8269/' },
+    { label: 'Instagram', icon: 'instagram', href: 'https://www.instagram.com/cn.joao/' },
+  ] as { label: string; icon: IconName; href: string }[],
 };
 
 export const about: L = {
