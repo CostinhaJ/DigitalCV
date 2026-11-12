@@ -8,4 +8,8 @@ linkType: repo
 category: pessoal
 tags: [Docker, GNS3, Scikit-Learn]
 year: 2026
+en:
+  title: "SDN/IoT security experiments"
+  description: "An emulated IoT testbed, based on the Gotham Testbed, for security experiments and dataset generation, to which I added a machine-learning decision model on one of the devices."
+  imageAlt: "Illustration of a network with a central controller and nodes on alert"
 ---

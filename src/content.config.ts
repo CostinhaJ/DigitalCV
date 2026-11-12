@@ -25,6 +25,15 @@ const projects = defineCollection({
       featured: z.boolean().default(false),
       // Opcional: true para esconder o projeto sem o apagar
       draft: z.boolean().default(false),
+      // Opcional: textos em inglês para a página /en/ (o que faltar fica em português)
+      en: z
+        .object({
+          title: z.string().optional(),
+          description: z.string().optional(),
+          imageAlt: z.string().optional(),
+          tags: z.array(z.string()).optional(),
+        })
+        .optional(),
     }),
 });
 

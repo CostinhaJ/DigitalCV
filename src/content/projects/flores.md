@@ -8,4 +8,8 @@ linkType: repo
 category: pessoal
 tags: [HTML, CSS]
 year: 2024
+en:
+  title: "Flowers"
+  description: "An animation of growing flowers, made with HTML and CSS only."
+  imageAlt: "Illustration of three colourful flowers on a dark background"
 ---

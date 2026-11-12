@@ -1,12 +1,28 @@
 ---
 import { about, experience, associativism, volunteering, education, skills, languages } from '../data/cv';
+import { tr, ui, type L, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const s = ui[lang].sections;
+const $ = (value: L) => tr(value, lang);
 
 // Secções em formato de cronologia; as vazias não aparecem.
 const timelines = [
-  { title: 'Experiência', items: experience },
-  { title: 'Associativismo', items: associativism },
-  { title: 'Voluntariado', items: volunteering },
+  { title: s.experience, items: experience },
+  { title: s.associativism, items: associativism },
+  { title: s.volunteering, items: volunteering },
 ].filter((t) => t.items.length > 0);
+
+// Divide um texto em partes de texto e URLs, para os URLs ficarem clicáveis.
+const withLinks = (text: string) =>
+  text.split(/(https?:\/\/[^\s]+)/).map((part) =>
+    /^https?:\/\//.test(part)
+      ? { href: part, label: part.replace(/^https?:\/\//, '').replace(/\/$/, '') }
+      : { text: part },
+  );
 ---
 
 <section id="cv">
@@ -15,7 +31,7 @@ const timelines = [
 
     <div class="grid">
       <div class="col">
-        <p class="about">{about}</p>
+        <p class="about">{$(about)}</p>
 
         {
           timelines.map((t) => (
@@ -25,14 +41,26 @@ const timelines = [
                 {t.items.map((item) => (
                   <li>
                     <div class="row">
-                      <strong>{item.role}</strong>
-                      <span class="period">{item.period}</span>
+                      <strong>{$(item.role)}</strong>
+                      <span class="period">{$(item.period)}</span>
                     </div>
-                    <div class="where">{item.company}</div>
-                    {item.summary && <p>{item.summary}</p>}
+                    <div class="where">{$(item.company)}</div>
+                    {item.summary && <p>{$(item.summary)}</p>}
                     {item.highlights && (
                       <ul class="highlights">
-                        {item.highlights.map((h) => <li>{h}</li>)}
+                        {item.highlights.map((h) => (
+                          <li>
+                            {withLinks($(h)).map((part) =>
+                              'href' in part ? (
+                                <a href={part.href} target="_blank" rel="noopener noreferrer">
+                                  {part.label}
+                                </a>
+                              ) : (
+                                part.text
+                              ),
+                            )}
+                          </li>
+                        ))}
                       </ul>
                     )}
                   </li>
@@ -44,35 +72,35 @@ const timelines = [
       </div>
 
       <aside class="col">
-        <h3>Formação</h3>
+        <h3>{s.education}</h3>
         <ul class="timeline">
           {
             education.map((item) => (
               <li>
                 <div class="row">
-                  <strong>{item.degree}</strong>
-                  <span class="period">{item.period}</span>
+                  <strong>{$(item.degree)}</strong>
+                  <span class="period">{$(item.period)}</span>
                 </div>
-                <div class="where">{item.school}</div>
+                <div class="where">{$(item.school)}</div>
               </li>
             ))
           }
         </ul>
 
-        <h3>Competências</h3>
+        <h3>{s.skills}</h3>
         <ul class="skills">
-          {skills.map((skill) => <li>{skill}</li>)}
+          {skills.map((skill) => <li>{$(skill)}</li>)}
         </ul>
 
         {
           languages.length > 0 && (
             <>
-              <h3>Línguas</h3>
+              <h3>{s.languages}</h3>
               <ul class="languages">
-                {languages.map((lang) => (
+                {languages.map((l) => (
                   <li>
-                    <strong>{lang.name}</strong>
-                    <span class="period">{lang.level}</span>
+                    <strong>{$(l.name)}</strong>
+                    <span class="period">{$(l.level)}</span>
                   </li>
                 ))}
               </ul>
@@ -142,6 +170,10 @@ const timelines = [
   .timeline .highlights li {
     border-left: 0;
     padding-left: 0;
+  }
+  .highlights a {
+    color: var(--accent);
+    word-break: break-word;
   }
   .timeline p {
     margin: 0.35rem 0 0;

@@ -8,4 +8,8 @@ linkType: repo
 category: universidade
 tags: [Python, Django, SQLite]
 year: 2024
+en:
+  title: "Django voting platform"
+  description: "Web app (BSc) with student sign-up and login, creation of questions and options, voting and a results page."
+  imageAlt: "Illustration of a poll with result bars"
 ---
